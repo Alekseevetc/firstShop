@@ -59,7 +59,7 @@ pipeline  {
             steps {
                 echo " ============== starting chatterbox server =================="
                 sh '''
-                docker run -d --restart=always --name boo-shop -p 80:8000 alekseevetc/boot-shop
+                docker run -d --restart=always --name boot-shop -p 80:8000 alekseevetc/boot-shop
                 '''
             }
         }
