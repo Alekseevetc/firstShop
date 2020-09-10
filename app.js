@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 
+const sequalize = require("./helper/database");
+
 const app = express()
 const PORT = 8000
 
@@ -41,4 +43,10 @@ app.use(forgetpass)
 app.use(legal_notice)
 app.use(delivery)
 
-app.listen(PORT)
+sequalize
+  .sync()
+  .then((connectionRezult) => {
+    //console.log("connectionRezult = ", connectionRezult);
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  })
+  .catch((err) => console.log(err));

@@ -1,10 +1,20 @@
-const express = require('express')
-const path = require('path')
+const express = require("express");
+const Product = require("../models/product");
+const path = require("path");
 
-const router = express.Router()
+const router = express.Router();
 
 router.get("/", (req, res, next) => {
-    res.render("index")
-})
+
+  Product.findAll()
+    .then((products) => {
+      res.render("index", {
+        products: products,
+        pageTitle: "All products",
+        path: "index",
+      });
+    })
+    .catch((err) => console.log(err));
+});
 
 module.exports = router;
